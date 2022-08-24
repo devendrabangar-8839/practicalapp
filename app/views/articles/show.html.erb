@@ -1,13 +1,36 @@
-<h1 style="background-color: yellow; font-size: 90px; text-align: center;"><%= @article.title %></h1>
+<h1 style="background-color: yellow; font-size: 90px; text-align: center; font-family: monospace;">
+  <%= @article.title %>   
+</h1>
  
-<p style="text-align: center;"><%= @article.body %></p>
- <ul>
+<p style="text-align: center; font-size:50px; background-color: green;">
+  <%= @article.body %>
+</p>
+
+
+
+<%= render @article.comments %>
+
+<h2>Add a comment</h2>
+<%= form_with model: [ @article, @article.comments.build ] do |form| %>
+  <p>
+    <%= form.label :commenter %>
+    <br>
+    <%= form.text_field :commenter %>
+  </p>
+  <p>
+    <%= form.label :body %>
+    <br>
+    <%= form.text_area :body %>
+  </p>
+  <p>
+    <%= form.submit %>
+  </p>
+<% end -%>
+
+<ul style="font-size: 20px;">
   <li><%= link_to "Edit", edit_article_path(@article) %></li>
-</ul>
-
   <li><%= link_to "Destroy", article_path(@article), data: {
-  turbo_method: :delete,
-  turbo_confirm: "Are you sure?"} %>
+    turbo_method: :delete,
+    turbo_confirm: "Are you sure?"} %>
   </li>
-
-  
+</ul>

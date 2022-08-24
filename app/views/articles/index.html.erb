@@ -9,9 +9,11 @@
 <ul>
   <% @articles.each do |article| %>
     <li>
-      <a style="font-size: 25px;" href="/articles/<%= article.id %>">
+      <a href="/articles/<%= article.id %>">
         <%= article.title %>
       </a>
     </li>
   <% end %>
 </ul>
+
+
