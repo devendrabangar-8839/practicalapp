@@ -5,10 +5,27 @@
 <p style="text-align: center; font-size:50px; background-color: green;">
   <%= @article.body %>
 </p>
+<ul style="font-size: 20px;">
+  <li><%= link_to "Edit", edit_article_path(@article) %></li>
+  <li><%= link_to "Destroy", article_path(@article), data: {
+    turbo_method: :delete,
+    turbo_confirm: "Are you sure?"} %>
+  </li>
+</ul>
 
 
+<h2>Comments</h2>
+<% @article.comments.each do |comment| %>
+  <p>
+    <strong>Commenter:</strong>
+    <%= comment.commenter %>
+  </p>
 
-<%= render @article.comments %>
+  <p>
+    <strong>Comment:</strong>
+    <%= comment.body %>
+  </p>
+<% end %>
 
 <h2>Add a comment</h2>
 <%= form_with model: [ @article, @article.comments.build ] do |form| %>
@@ -25,12 +42,5 @@
   <p>
     <%= form.submit %>
   </p>
-<% end -%>
+<% end %>
 
-<ul style="font-size: 20px;">
-  <li><%= link_to "Edit", edit_article_path(@article) %></li>
-  <li><%= link_to "Destroy", article_path(@article), data: {
-    turbo_method: :delete,
-    turbo_confirm: "Are you sure?"} %>
-  </li>
-</ul>

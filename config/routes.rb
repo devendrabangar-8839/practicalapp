@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   # get "/articles", to: "articles#index"
   # get "/articles/:id", to: "articles#show"
   # get "/articles/new"
-  resources :articles do
+  resources :articles do 
     resources :comments
   end
   

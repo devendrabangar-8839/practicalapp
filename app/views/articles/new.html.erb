@@ -2,7 +2,7 @@
 <%= form_with model: @article do |form| %>
   <div>
     <%= form.label :title %><br>
-    <%= form.text_field :title %>
+    <%= form.text_field :title, style:"border-color:red;" %>
     
 
     <% @article.errors.full_messages_for(:title).each do |message| %>
@@ -16,6 +16,10 @@
     <% @article.errors.full_messages_for(:body).each do |message| %>
       <div><%= message %></div>
     <% end %>
+  </div>
+    <div>
+    <%= form.label :status %><br>
+    <%= form.select :status, ['public', 'private', 'archived'], selected: 'public' %>
   </div>
 
   <div>
